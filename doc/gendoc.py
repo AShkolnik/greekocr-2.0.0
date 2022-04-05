@@ -12,11 +12,11 @@ if __name__ == '__main__':
    try:
       from gamera.toolkits.greekocr.plugins import clear
    except ImportError:
-      print "WARNING:"
-      print "This `greekocr` toolkit must be installed before generating"
-      print "the documentation.  For now, the system will skip generating"
-      print "documentation for the plugins."
-      print
+      print("WARNING:")
+      print("This `greekocr` toolkit must be installed before generating")
+      print("the documentation.  For now, the system will skip generating")
+      print("documentation for the plugins.")
+      print()
 
    # Step 2:
    # Generate documentation for this toolkit

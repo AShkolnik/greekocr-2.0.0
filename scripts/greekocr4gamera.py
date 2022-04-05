@@ -79,14 +79,14 @@ while i < len(args):
       options["imagefile"] = args[i]
    i += 1
 
-if not options.has_key("trainingdata"):
-   print "No Trainingdata given"
+if "trainingdata" not in options:
+   print("No Trainingdata given")
    usage()
    exit(1)
-if not options.has_key("mode"):
+if "mode" not in options:
    options["mode"] = "wholistic"
-if not options.has_key("imagefile"):
-   print "No filename given"
+if "imagefile" not in options:
+   print("No filename given")
    usage()
    exit(2)
 
@@ -103,11 +103,11 @@ image = load_image(options["imagefile"])
 if image.data.pixel_type != ONEBIT:
    image = image.to_onebit()
 
-if options.has_key("filter") and options["filter"] == True:
+if "filter" in options and options["filter"] == True:
     count = 0
     ccs = image.cc_analysis()
-    if options.has_key("debug") and options["debug"] == True:
-       print "filter started on",len(ccs) ,"elements..."
+    if "debug" in options and options["debug"] == True:
+       print(("filter started on",len(ccs) ,"elements..."))
     median_black_area = median([cc.black_area()[0] for cc in ccs])
     for cc in ccs:
       if(cc.black_area()[0] > (median_black_area * 10)):
@@ -119,29 +119,29 @@ if options.has_key("filter") and options["filter"] == True:
         cc.fill_white()
         del cc
         count = count + 1
-    if options.has_key("debug") and options["debug"] == True:
-       print "filter done.",len(ccs)-count,"elements left."
+    if "debug" in options and options["debug"] == True:
+       print(("filter done.",len(ccs)-count,"elements left."))
 
 
-if options.has_key("deskew") and options["deskew"] == True:
+if "deskew" in options and options["deskew"] == True:
   #from gamera.toolkits.otr.otr_staff import *
-  if options.has_key("debug") and options["debug"] == True:
-    print "\ntry to skew correct..."
+  if "debug" in options and options["debug"] == True:
+    print("\ntry to skew correct...")
   rotation = image.rotation_angle_projections(-10,10)[0]
   img = image.rotate(rotation,0)
-  if options.has_key("debug") and options["debug"] == True:
-    print "rotated with",rotation,"angle"
+  if "debug" in options and options["debug"] == True:
+    print(("rotated with",rotation,"angle"))
 
 
 
 output = g.process_image(image)
-if options.has_key("debug") and options["debug"] == True:
+if "debug" in options and options["debug"] == True:
    g.save_debug_images()
 
-if options.has_key("unicodeoutfile"):
+if "unicodeoutfile" in options:
    g.save_text_unicode(options["unicodeoutfile"])
-elif options.has_key("teubneroutfile"):
+elif "teubneroutfile" in options:
    g.save_text_teubner(options["teubneroutfile"])
 else:
-   print output
+   print(output)
 

@@ -180,7 +180,7 @@ class WholisticTextline(Textline):
    def to_string(self):
       k = 3
       max_k = 10
-      output = u""
+      output = ""
       for word in self.words:
          characters = []
          skipids = ["manual.xi.upper", "manual.xi.lower", "manual.theta.outer"]

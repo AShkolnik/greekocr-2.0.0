@@ -51,12 +51,12 @@ class Character(object):
    
    def toUnicodeString(self):
       try:
-         str = u""
+         str = ""
          mainids = self.maincharacter.get_main_id().split(".and.")
          for char in mainids:
             if char == "skip" or char == "unclassified":
                continue
-            str = str + u"%c" % return_char(char)
+            str = str + "%c" % return_char(char)
                
          #str = u"" + return_char(self.unicodename)
          for char in self.combinedwith:
@@ -67,12 +67,12 @@ class Character(object):
                if char == "skip":
                   continue
                #print "added %s to output" % char
-               str = str + u"%c" % return_char(char)
+               str = str + "%c" % return_char(char)
       
          return unicodedata.normalize('NFD', str)
       except:
          #print self.unicodename
-         return u"E"
+         return "E"
          
       
       

@@ -43,7 +43,7 @@ http://en.wikibooks.org/wiki/Algorithm_implementation/Strings/Levenshtein_distan
    if not s1:
       return len(s2)
  
-   previous_row = xrange(len(s2) + 1)
+   previous_row = list(range(len(s2) + 1))
    for i, c1 in enumerate(s1):
       current_row = [i + 1]
       for j, c2 in enumerate(s2):
@@ -82,10 +82,10 @@ Signature:
 """
    errorcount, gtlength, ocrlength = levenshtein_multi_unicode(groundtruth, ocr)
    rate = float(errorcount) / gtlength
-   print "Errorcount:          %d" % errorcount
-   print "Characters in GT:    %d" % gtlength
-   print "Characters in OCR:   %d" % ocrlength
-   print "Error Rate:          %.2f %%" % (rate * 100)
+   print(("Errorcount:          %d" % errorcount))
+   print(("Characters in GT:    %d" % gtlength))
+   print(("Characters in OCR:   %d" % ocrlength))
+   print(("Error Rate:          %.2f %%" % (rate * 100)))
    #print "=%5d %5d %5d %3.2f" % (errorcount, gtlength, ocrlength, rate*100)
    
    return rate

@@ -110,8 +110,8 @@ a complete LaTeX document, you can use the following code:
 
    # LaTeX header
    print "\documentclass[10pt]{article}"
-   print "\usepackage[polutonikogreek]{babel}"
-   print "\usepackage[or]{teubner}"
+   print "\\usepackage[polutonikogreek]{babel}"
+   print "\\usepackage[or]{teubner}"
    print "\\\\begin{document}"
    print "\selectlanguage{greek}"
 
@@ -124,7 +124,7 @@ a complete LaTeX document, you can use the following code:
 """
    import unicodedata
 
-   output = u""
+   output = ""
    combinewith = []
    maincharacter = None
    i = 0
@@ -177,10 +177,10 @@ a complete LaTeX document, you can use the following code:
 
 if __name__ == "__main__":
    import unicodedata
-   teststr = u"ἔθαψε, ὡς οἰκὸς ἦν"
+   teststr = "ἔθαψε, ὡς οἰκὸς ἦν"
 
 
-   print unicode_to_teubner(unicodedata.normalize("NFD", teststr))
+   print((unicode_to_teubner(unicodedata.normalize("NFD", teststr))))
 
    for a in accentmap:
       sort = sorted(a[1])

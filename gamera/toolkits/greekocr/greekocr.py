@@ -39,7 +39,7 @@ import codecs
 
 def clean_classifier(cknn):
    glyphs = cknn.get_glyphs()
-   print "old %d" % len(glyphs)
+   print(("old %d" % len(glyphs)))
    sorted_glyphs = sorted(glyphs, key=lambda g: g.to_rle())
    new_glyphs = []
    
@@ -49,13 +49,13 @@ def clean_classifier(cknn):
          if last_rle != sorted_glyphs[i].to_rle():
             new_glyphs.append(sorted_glyphs[i])
          else:
-            print sorted_glyphs[i].get_main_id()
+            print((sorted_glyphs[i].get_main_id()))
    
-   print "new after removing duplicates: %d" % len(new_glyphs)
+   print(("new after removing duplicates: %d" % len(new_glyphs)))
    cknn.set_glyphs(new_glyphs)
    cknn = edit_cnn(cknn)
    
-   print "new after cnn: %d" % len(cknn.get_glyphs())
+   print(("new after cnn: %d" % len(cknn.get_glyphs())))
    return cknn
 
 
@@ -109,14 +109,14 @@ or separatistic).
          self.page = WholisticPage(self.img)
 
       if self.debug:
-         print "start page segmentation..."
+         print("start page segmentation...")
          t = time.time()
 
       self.page.segment()
 
       if self.debug:
          t = time.time() - t
-         print "\t segmentation done [",t,"sec]"
+         print(("\t segmentation done [",t,"sec]"))
 
 
 
@@ -157,15 +157,15 @@ where *image* is a Gamera image.
       rgbfilename = "debug_lines.png"
       rgb = self.page.show_lines()
       rgb.save_PNG(rgbfilename)
-      print "file '%s' written" % rgbfilename
+      print(("file '%s' written" % rgbfilename))
       rgbfilename = "debug_chars.png"
       rgb = self.page.show_glyphs()
       rgb.save_PNG(rgbfilename)
-      print "file '%s' written" % rgbfilename
+      print(("file '%s' written" % rgbfilename))
       rgbfilename = "debug_words.png"
       rgb = self.page.show_words()
       rgb.save_PNG(rgbfilename)
-      print "file '%s' written" % rgbfilename
+      print(("file '%s' written" % rgbfilename))
 
 
 
@@ -202,13 +202,13 @@ Make sure that you have called load_trainingdata_ before!
          image = image.to_onebit()
       self.img = image
       if self.debug:
-         print "Doing page Segmentation"
+         print("Doing page Segmentation")
       self.segment_page()
       if self.debug:
-         print "Classifying Text"
+         print("Classifying Text")
       self.classify_text()
       if self.debug:
-         print "Returning Output"
+         print("Returning Output")
       return self.get_text()
       
 
@@ -216,7 +216,7 @@ Make sure that you have called load_trainingdata_ before!
    def save_text_xetex(self, filename):
       data = \
 '''\documentclass[11pt]{article}
-\usepackage{xltxtra}
+\\usepackage{xltxtra}
 \setmainfont[Mapping=tex-text]{GFS Porson}
 \\begin{document}
 %s
@@ -252,12 +252,12 @@ Signature
 
 Make sure that you have called process_image_ before!
 """
-      from unicode_teubner import unicode_to_teubner
+      from .unicode_teubner import unicode_to_teubner
 
       data = '''
 \documentclass[10pt]{article}
-\usepackage[polutonikogreek]{babel}
-\usepackage[or]{teubner}
+\\usepackage[polutonikogreek]{babel}
+\\usepackage[or]{teubner}
 \\begin{document}
 \selectlanguage{greek}
 %s
@@ -273,7 +273,7 @@ Make sure that you have called process_image_ before!
    
    def _normalize(self,str):
       str = unicodedata.normalize("NFD", str)
-      output = u""
+      output = ""
       combined = []
       for i in str:
          is_combining = True
