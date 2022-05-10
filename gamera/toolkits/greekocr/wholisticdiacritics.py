@@ -94,7 +94,7 @@ class WholisticPage(Page):
          add = []
          result = []
          # edited, but not tested
-         def cmp(x,y): return (x > y) - (x < y)
+         cmp = lambda x,y: (x > y) - (x < y)
          glyphs.sort(key=cmp_to_key(lambda x,y: cmp(x.ul_x, y.ul_x)))
          #print "first run"
          for position, item in enumerate(glyphs):
